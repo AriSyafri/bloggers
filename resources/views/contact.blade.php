@@ -15,6 +15,18 @@
 
     <h1>Halaman Contact</h1>
 
+    <ul>
+        <li>
+            <a href="https://instagram.com">Instagram</a>
+        </li>
+        <li>
+            <a href="https://instagram.com">x</a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com/">Youtube</a>
+        </li>
+    </ul>
+
     <script src="js/script.js"></script>
 </body>
 </html>
