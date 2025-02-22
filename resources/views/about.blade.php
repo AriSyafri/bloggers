@@ -4,5 +4,5 @@
 
     <h3 class="text-xl">Welcome to About</h3>
 
-    <p>Nama : {{ $nama }}</p>
+    <p>Nama : {{ $name }}</p>
 </x-layout>
