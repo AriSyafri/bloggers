@@ -28,9 +28,14 @@ class Post
 
     public static function find($slug)
     {
-        return Arr::first(static::all(), function ($post) use ($slug) {
-            return $post['slug'] == $slug;
-        });
+
+        //ini call back
+        // return Arr::first(static::all(), function ($post) use ($slug) {
+        //     return $post['slug'] == $slug;
+        // });
+
+        // dengan arrow function
+        return Arr::first(static::all(), fn ($post) => $post['slug'] == $slug);
 
     }
 
