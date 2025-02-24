@@ -26,7 +26,7 @@ class Post
         ];
     }
 
-    public static function find($slug)
+    public static function find($slug): array
     {
 
         //ini call back
