@@ -30,7 +30,7 @@ Route::get('/posts/{post:slug}', function(Post $post) {
 });
 
 Route::get('/authors/{user:username}', function(User $user) {
-    return view('posts', ['title' => 'Article by ' . $user->name, 'posts' => $user->posts]);
+    return view('posts', ['title' => count($user->posts) . ' Article by ' . $user->name, 'posts' => $user->posts]);
 });
 
 Route::get('/contact', function () {
