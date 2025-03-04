@@ -9,7 +9,7 @@
             </a>
 
             <div class="text-base text-gray-500">
-                <a href="#">{{ $post['author'] }}</a> | {{ $post->created_at->diffForHumans() }}
+                <a href="#">{{ $post->author->name }}</a> | {{ $post->created_at->diffForHumans() }}
             </div>
 
             <p class="my-4 font-light">{{ Str::limit($post['body'], 150) }}</p>
