@@ -19,15 +19,17 @@ Route::get('/about', function () {
 });
 
 Route::get('/posts', function () {
+    $post = Post::with(['author', 'category'])->latest()->get();
     return view('posts', [
         'title' => 'Posts',
-        'posts' => Post::all()
+        'posts' => $post
     ]);
 });
 
 
 Route::get('/posts/{post:slug}', function(Post $post) {
-    return view('post', ['title' => 'Single Post', 'post' => $post]);
+    return view('post', ['title' => 'Single Post',
+                            'post' => $post]);
 });
 
 Route::get('/authors/{user:username}', function(User $user) {
