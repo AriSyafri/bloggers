@@ -16,17 +16,26 @@ class CategorySeeder extends Seeder
         // Category::factory(3)->create();
         Category::create([
             'name' => 'Web Dev',
-            'slug' => 'web-dev'
+            'slug' => 'web-dev',
+            'color' => 'red'
         ]);
 
         Category::create([
             'name' => 'Mobile Dev',
-            'slug' => 'mob-dev'
+            'slug' => 'mob-dev',
+            'color' => 'green'
         ]);
 
         Category::create([
             'name' => 'Fullstack Dev',
-            'slug' => 'fullstack-dev'
+            'slug' => 'fullstack-dev',
+            'color' => 'blue'
+        ]);
+
+        Category::create([
+            'name' => 'Front End Dev',
+            'slug' => 'fe-dev',
+            'color' => 'yellow'
         ]);
     }
 }
