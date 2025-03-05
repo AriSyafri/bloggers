@@ -62,23 +62,27 @@ class DatabaseSeeder extends Seeder
         // ])->create();
 
         //contoh gabungan recycle
-        $ari = User::create([
-            'name' => 'Ari Syafri',
-            'username' => 'arisyafri15',
-            'email' => 'arisyafrie.as15@gmail.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('password'),
-            'remember_token' => Str::random(10)
-        ]);
+        // $ari = User::create([
+        //     'name' => 'Ari Syafri',
+        //     'username' => 'arisyafri15',
+        //     'email' => 'arisyafrie.as15@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => Hash::make('password'),
+        //     'remember_token' => Str::random(10)
+        // ]);
 
+        // Post::factory(100)->recycle([
+        //     Category::factory(3)->create(),
+        //     $ari,
+        //     User::factory(5)->create()
+        // ])->create();
+
+        //memisahkan masing-masing kedalam class seeder sendiri
+        $this->call([CategorySeeder::class, UserSeeder::class]);
         Post::factory(100)->recycle([
-            Category::factory(3)->create(),
-            $ari,
-            User::factory(5)->create()
+            Category::all(),
+            User::all()
         ])->create();
-
-
-
 
     }
 }
