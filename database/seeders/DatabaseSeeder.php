@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
         // membuat yang sebelumnya dari tinker
         // penggunaan penggabungan seeder dan facto
 
-        // php artisan megrate:fresh --seed
+        // dengan : php artisan migrate:fresh --seed
         // Post::factory(100)->recycle([
         //     Category::factory(3)->create(),
         //     User::factory(5)->create()
@@ -78,6 +78,8 @@ class DatabaseSeeder extends Seeder
         // ])->create();
 
         //memisahkan masing-masing kedalam class seeder sendiri
+        // dengan : php artisan migrate:fresh --seed
+
         $this->call([CategorySeeder::class, UserSeeder::class]);
         Post::factory(100)->recycle([
             Category::all(),
