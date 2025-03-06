@@ -20,10 +20,18 @@ Route::get('/about', function () {
 
 Route::get('/posts', function () {
     // $post = Post::with(['author', 'category'])->latest()->get();
-    $posts = Post::latest()->get();
+
+    //dump(request('search'));
+
+    $posts = Post::latest();
+
+    if(request('search')) {
+        $posts->where('title', 'like', '%' . request('search') . '%');
+    }
+
     return view('posts', [
         'title' => 'Posts',
-        'posts' => $posts
+        'posts' => $posts->get()
     ]);
 });
 
