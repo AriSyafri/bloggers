@@ -21,7 +21,7 @@ Route::get('/about', function () {
 Route::get('/posts', function () {
     return view('posts', [
         'title' => 'Posts',
-        'posts' => Post::filter(request(['search']))->latest()->get()
+        'posts' => Post::filter(request(['search', 'category']))->latest()->get()
     ]);
 });
 

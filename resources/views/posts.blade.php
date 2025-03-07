@@ -5,6 +5,11 @@
     <div class="py-4 px-4 mx-auto max-w-screen-xl lg:px-6">
         <div class="mx-auto max-w-screen-md sm:text-center">
             <form>
+
+                @if (request('category'))
+                <input type="hidden" name="category" value="{{ request('category'); }}">
+                @endif
+
                 <div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
                     <div class="relative w-full">
                         <label for="search" class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search</label>
@@ -30,7 +35,7 @@
 
             <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-between items-center mb-5 text-gray-500">
-                    <a href="/categories/{{ $post->category->slug }}">
+                    <a href="/posts?category={{ $post->category->slug }}">
                     <span
                         class="bg-{{ $post->category->color }}-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
                             {{ $post->category->name }}
