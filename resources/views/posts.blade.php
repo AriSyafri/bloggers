@@ -7,7 +7,11 @@
             <form>
 
                 @if (request('category'))
-                <input type="hidden" name="category" value="{{ request('category'); }}">
+                    <input type="hidden" name="category" value="{{ request('category'); }}">
+                @endif
+
+                @if (request('author'))
+                    <input type="hidden" name="author" value="{{ request('author'); }}">
                 @endif
 
                 <div class="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
@@ -49,7 +53,7 @@
                 </a>
                 <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ Str::limit($post->body, 150) }}</p>
                 <div class="flex justify-between items-center">
-                    <a href="/authors/{{ $post->author->username }}">
+                    <a href="/posts?author={{ $post->author->username }}">
                     <div class="flex items-center space-x-3">
                         <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="{{ $post->author->name }}" />
                     <span class="font-medium text-xs dark:text-white">
