@@ -19,19 +19,9 @@ Route::get('/about', function () {
 });
 
 Route::get('/posts', function () {
-    // $post = Post::with(['author', 'category'])->latest()->get();
-
-    //dump(request('search'));
-
-    $posts = Post::latest();
-
-    if(request('search')) {
-        $posts->where('title', 'like', '%' . request('search') . '%');
-    }
-
     return view('posts', [
         'title' => 'Posts',
-        'posts' => $posts->get()
+        'posts' => Post::filter()->latest()->get()
     ]);
 });
 
