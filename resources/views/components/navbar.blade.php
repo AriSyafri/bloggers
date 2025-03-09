@@ -42,7 +42,11 @@
                 @auth
                     <p class="block px-4 py-2 text-sm text-gray-700">Welcome Back, {{ auth()->user()->name }} </p>
                     <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">My Dashboard</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Logout</a>
+                    {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Logout</a> --}}
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="block px-4 py-2 text-sm text-gray-700">Logout</button>
+                    </form>
 
                 @else
                     <a href="/login" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Login</a>
