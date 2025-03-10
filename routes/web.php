@@ -63,3 +63,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 Route::get('/tes', function () {
     return view('tes', ['title' => 'tests']);
 });
+
+
+Route::get('/dashboard/posts', function () {
+    return view('dashboard.posts.index', ['title' => 'Posts']);
+});
