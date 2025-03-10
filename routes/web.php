@@ -58,3 +58,8 @@ Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
+
+Route::get('/tes', function () {
+    return view('tes', ['title' => 'tests']);
+});
