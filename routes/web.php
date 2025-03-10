@@ -2,6 +2,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -65,6 +66,8 @@ Route::get('/tes', function () {
 });
 
 
-Route::get('/dashboard/posts', function () {
-    return view('dashboard.posts.index', ['title' => 'Posts']);
-});
+// Route::get('/dashboard/posts', function () {
+//     return view('dashboard.posts.index', ['title' => 'Posts']);
+// });
+
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
