@@ -350,12 +350,18 @@
             class="py-1 text-gray-700 dark:text-gray-300"
             aria-labelledby="dropdown"
           >
-            <li>
-              <form action="/logout" method="post">
-                  @csrf
-                  <button type="submit" class="block px-4 py-2 text-sm text-gray-700">Logout</button>
-              </form>
-            </li>
+          <li>
+            <form action="/logout" method="post">
+              @csrf
+              <button type="submit" class="flex items-center px-4 py-2 text-sm text-gray-700">
+                <svg class="w-5 h-5 text-gray-400 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"/>
+                </svg>
+                <span class="ml-2">Logout</span>
+              </button>
+            </form>
+          </li>
+
           </ul>
         </div>
       </div>
