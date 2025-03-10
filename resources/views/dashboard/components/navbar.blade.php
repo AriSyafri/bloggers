@@ -303,7 +303,7 @@
             >
             <span
               class="block text-sm text-gray-900 truncate dark:text-white"
-              >name@flowbite.com</span
+              >Hi {{ auth()->user()->name }}</span
             >
           </div>
           <ul
