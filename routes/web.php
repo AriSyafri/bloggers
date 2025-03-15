@@ -69,5 +69,5 @@ Route::get('/tes', function () {
 // Route::get('/dashboard/posts', function () {
 //     return view('dashboard.posts.index', ['title' => 'Posts']);
 // });
-
+Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
