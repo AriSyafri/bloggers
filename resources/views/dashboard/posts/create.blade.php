@@ -1,11 +1,10 @@
 @extends('dashboard.components.layout');
 
 @section('container')
-
 <div class="min-h-screen w-full flex flex-col justify-start items-start bg-gray-100 dark:bg-gray-900 px-4">
-    <div class="container max-w-6xl w-full py-2">
+    <div class="w-full max-w-5xl mx-auto py-2 px-6 md:px-12">
         <h2 class="mb-2 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">Create New Post</h2>
-        <form class="max-w-lg" method="post" action="/dashboard/posts">
+        <form class="w-full" method="post" action="/dashboard/posts">
             @csrf
             <div class="mb-3">
                 <label for="title" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Title</label>
@@ -26,10 +25,14 @@
                 <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
-
                     @endforeach
-
                 </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Insert Body</label>
+                <input id="x" type="hidden" name="content">
+                <trix-editor input="x"></trix-editor>
             </div>
 
             <button type="submit"
@@ -37,6 +40,7 @@
         </form>
     </div>
 </div>
+
 
 <script>
 
@@ -48,6 +52,10 @@
         .then(response => response.json())
         .then(data => slug.value = data.slug)
     });
+
+    document.addEventListener('trix-file-accept', function(e) {
+        e.preventDefault();
+    })
 </script>
 
 @endsection
