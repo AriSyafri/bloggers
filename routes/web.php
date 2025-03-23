@@ -1,8 +1,6 @@
 
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DashboardPostController;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -10,6 +8,9 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\DashboardPostController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -71,3 +72,5 @@ Route::get('/tes', function () {
 // });
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
+Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('auth');
