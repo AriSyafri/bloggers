@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 
 
 class AdminCategoryController extends Controller
@@ -14,9 +14,7 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
-        if (Auth::guest() || Auth::user()->username !== 'arisyafri15') {
-            abort(403);
-        }
+
 
         return view('dashboard.categories.index', [
             'title' => 'Category',
