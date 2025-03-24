@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class AdminCategoryController extends Controller
 {
@@ -12,6 +14,14 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
+        if (Auth::guest()) {
+            abort(403);
+        }
+
+        if (Auth::user()->username !== 'arisyafri15') {
+            abort(403);
+        }
+
         return view('dashboard.categories.index', [
             'title' => 'Category',
             'categories' => Category::all()
@@ -37,7 +47,7 @@ class AdminCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(category $category)
+    public function show(Category $category)
     {
         //
     }
@@ -45,7 +55,7 @@ class AdminCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(category $category)
+    public function edit(Category $category)
     {
         //
     }
@@ -53,7 +63,7 @@ class AdminCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, category $category)
+    public function update(Request $request, Category $category)
     {
         //
     }
@@ -61,7 +71,7 @@ class AdminCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(category $category)
+    public function destroy(Category $category)
     {
         //
     }
