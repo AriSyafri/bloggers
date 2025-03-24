@@ -50,9 +50,6 @@
 
         </ul>
 
-
-
-
         <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <h6>
                 <span class="w-6 h-6 text-gray-800 dark:text-white p-2 text-base font-medium">Administrator</span>
@@ -60,7 +57,7 @@
 
             <li>
                 <a href="/dashboard/categories"
-                    class="{{ Request::is('dashboard') ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white' }} flex items-center p-2 text-base font-medium rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    class="{{ Request::is('dashboard/categories*') ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white' }} flex items-center p-2 text-base font-medium rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                         viewBox="0 0 24 24">
