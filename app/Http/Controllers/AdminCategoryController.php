@@ -14,11 +14,7 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
-        if (Auth::guest()) {
-            abort(403);
-        }
-
-        if (Auth::user()->username !== 'arisyafri15') {
+        if (Auth::guest() || Auth::user()->username !== 'arisyafri15') {
             abort(403);
         }
 
