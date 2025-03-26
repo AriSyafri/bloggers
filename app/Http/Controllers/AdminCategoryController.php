@@ -22,7 +22,7 @@ class AdminCategoryController extends Controller
 
         return view('dashboard.categories.index', [
             'title' => 'Category',
-            'categories' => Category::all()
+            'categories' => Category::paginate(10)
         ]);
     }
 
