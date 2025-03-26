@@ -23,9 +23,19 @@ class DashboardPostController extends Controller
         //     'posts' => Post::where('author_id', auth()->user()->id)->get()
         // ]);
 
+        // dump(request('search'));
+
+        $query = Post::where('author_id', Auth::user()->id);
+
+        if(request('search')) {
+            $query->where('title', 'like', '%' . request('search') . '%');
+        }
+
+        $posts = $query->paginate(10);
+
         return view('dashboard.posts.index', [
             'title' => 'Posts',
-            'posts' => Post::where('author_id', Auth::user()->id)->paginate(10)
+            'posts' => $posts
         ]);
     }
 
