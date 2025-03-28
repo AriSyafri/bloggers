@@ -25,7 +25,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Category</label>
+                <label for="color" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Color</label>
                 <select id="color" name="color" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="red">Red</option>
                     <option value="green">Green</option>
@@ -35,14 +35,6 @@
                 </select>
             </div>
 
-            <div class="mb-3">
-                <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">Insert Body</label>
-                @error('body')
-                    <p class="text-pink-600">{{ $message }}</p>
-                @enderror
-                <input id="body" type="hidden" name="body" value="{{ old('body') }}">
-                <trix-editor input="body"></trix-editor>
-            </div>
 
             <button type="submit"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Post</button>
@@ -62,9 +54,6 @@
         .then(data => slug.value = data.slug)
     });
 
-    document.addEventListener('trix-file-accept', function(e) {
-        e.preventDefault();
-    })
 </script>
 
 @endsection
