@@ -60,6 +60,7 @@
             </div>
         </div>
         <div class="overflow-x-auto">
+            @if ($posts->count())
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -84,7 +85,7 @@
                                 </svg>
                             </button>
                             <div id="dropdown-{{ $post->id }}" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="apple-imac-27-dropdown-button">
+                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200">
                                     <li>
                                         <a href="/dashboard/posts/{{ $post->slug }}"
                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
@@ -108,17 +109,27 @@
                                         </form>
                                     </li>
                                 </ul>
-
                             </div>
                         </td>
                     </tr>
-
                     @endforeach
-
-
                 </tbody>
             </table>
+            @else
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Not Found</h1>
+                <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+                    <a href="/dashboard/posts" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+                        <svg class="w-6 h-6 text-white-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+                        </svg>
+                        Back to all post
+                    </a>
+                </div>
+            </div>
+            @endif
         </div>
+
         <nav class="space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
             {{ $posts->links() }}
         </nav>
