@@ -3,8 +3,8 @@
 @section('container')
 <div class="min-h-screen w-full flex flex-col justify-start items-start bg-gray-100 dark:bg-gray-900 px-4">
     <div class="w-full max-w-5xl mx-auto py-2 px-6 md:px-12">
-        <h2 class="mb-2 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">Create New Category</h2>
-        <form method="post" action="/dashboard/posts" class="w-full">
+        <h2 class="mb-2 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">Create New Post</h2>
+        <form method="post" action="/dashboard/categories" class="w-full">
             @csrf
 
             <div class="mb-3">
@@ -35,6 +35,15 @@
                 </select>
             </div>
 
+            <div class="mb-3">
+                <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">Insert Body</label>
+                @error('body')
+                    <p class="text-pink-600">{{ $message }}</p>
+                @enderror
+                <input id="body" type="hidden" name="body" value="{{ old('body') }}">
+                <trix-editor input="body"></trix-editor>
+            </div>
+
             <button type="submit"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Post</button>
         </form>
@@ -44,11 +53,11 @@
 
 <script>
 
-    const title = document.querySelector('#name');
+    const name = document.querySelector('#name');
     const slug = document.querySelector('#slug');
 
-    title.addEventListener('change', function() {
-        fetch('/dashboard/posts/checkSlug?title=' + title.value)
+    name.addEventListener('change', function() {
+        fetch('/dashboard/categories/checkSlugCategory?name=' + name.value)
         .then(response => response.json())
         .then(data => slug.value = data.slug)
     });

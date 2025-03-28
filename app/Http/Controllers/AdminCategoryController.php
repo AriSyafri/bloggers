@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 
@@ -90,4 +90,16 @@ class AdminCategoryController extends Controller
     {
         //
     }
+
+    // public function checkSlugCategory(Request $request){
+    //     $slug = SlugService::createSlug(Category::class, 'slug', $request->name);
+    //     return response()->json(['slug' => $slug]);
+    // }
+
+    public function checkSlugCategory(Request $request){
+        $slug = SlugService::createSlug(Category::class, 'slug', $request->name);
+        return response()->json(['slug' => $slug]);
+    }
+
+
 }
