@@ -19,12 +19,20 @@ class AdminCategoryController extends Controller
 
     public function index()
     {
+        $query = Category::query();
+
+        if (request('search')) {
+            $query->where('name', 'like', '%' . request('search') . '%');
+        }
+
+        $categories = $query->paginate(10);
 
         return view('dashboard.categories.index', [
             'title' => 'Category',
-            'categories' => Category::paginate(10)
+            'categories' => $categories
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
