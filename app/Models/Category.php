@@ -20,6 +20,11 @@ class Category extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function sluggable(): array
     {
         return [

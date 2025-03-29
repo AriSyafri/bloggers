@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+use Exception;
+use Illuminate\Database\QueryException;
+
 
 class AdminCategoryController extends Controller
 {
@@ -88,13 +91,22 @@ class AdminCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
-    }
+        // Category::destroy($category->id);
 
-    // public function checkSlugCategory(Request $request){
-    //     $slug = SlugService::createSlug(Category::class, 'slug', $request->name);
-    //     return response()->json(['slug' => $slug]);
-    // }
+        // return redirect('/dashboard/categories')->with('success', 'Post has been delete');
+
+        try {
+            Category::destroy($category->id);
+            return redirect('/dashboard/categories')->with('success', 'Kategori berhasil dihapus.');
+        } catch (QueryException $e) {
+            if ($e->getCode() == "23000") { // Kode error foreign key constraint
+                return redirect('/dashboard/categories')->with('error', 'Kategori tidak dapat dihapus karena masih digunakan di data lain.');
+            }
+            return redirect('/dashboard/categories')->with('error', 'Terjadi kesalahan saat menghapus kategori.');
+        }
+
+
+    }
 
     public function checkSlugCategory(Request $request){
         $slug = SlugService::createSlug(Category::class, 'slug', $request->name);
