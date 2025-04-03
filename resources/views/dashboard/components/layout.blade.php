@@ -45,6 +45,9 @@
             @yield('container')
 
         </main>
+
+        @include('dashboard.components.footer');
+
     </div>
 
 </body>

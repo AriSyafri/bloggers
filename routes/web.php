@@ -13,7 +13,10 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
 
 Route::get('/', function () {
-    return view('home', ['title' => 'Home Page']);
+    return view('home', [
+        'title' => 'Home Page',
+        'posts' => Post::latest()->take(3)->get()
+    ]);
 });
 
 Route::get('/about', function () {
