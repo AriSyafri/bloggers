@@ -9,7 +9,9 @@
     {{-- alphine js --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <link rel="icon" type="image/png" href="{{ asset('img/logo-transparan.png') }}">
+    {{-- <link rel="icon" type="image/png" href="{{ asset('img/logo-transparan.png') }}"> --}}
+    {{-- <link rel="icon" type="image/png" href="{{ asset('img/logo-old.png') }}"> --}}
+    {{-- <link rel="shortcut icon" href="{{ asset('img/logo-old.png') }}"> --}}
 
     {{-- trix code editor --}}
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
