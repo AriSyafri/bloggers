@@ -15,7 +15,9 @@ use App\Http\Controllers\DashboardPostController;
 Route::get('/', function () {
     return view('home', [
         'title' => 'Home Page',
-        'posts' => Post::latest()->take(3)->get()
+        'posts' => Post::latest()->take(3)->get(),
+        'categories' => Category::get()
+
     ]);
 });
 
