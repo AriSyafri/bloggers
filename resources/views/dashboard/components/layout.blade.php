@@ -40,11 +40,11 @@
         @include('dashboard.components.sidebar');
         {{-- <x-sidebar></x-sidebar> --}}
 
-        <main class="p-2 md:ml-64 h-auto">
+        <main class="md:ml-64 h-auto">
 
             @yield('container')
 
-            @include('dashboard.components.footer');
+            @include('dashboard.components.footer')
         </main>
 
 
