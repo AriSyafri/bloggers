@@ -22,8 +22,13 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'username' => ['required', 'min:3', 'max:255', 'unique:users'],
             'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255'
+            'password' => 'required|min:5|max:255',
+            'image' => 'image|file|max:1024'
         ]);
+
+        if($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('profile-images');
+        }
 
         // $validatedData['password'] = bcrypt($validatedData['password']);
         $validatedData['password'] = Hash::make($validatedData['password']);
@@ -32,8 +37,6 @@ class RegisterController extends Controller
         User::create($validatedData);
 
         // $request->session()->flash('success', 'Registration successfull please login');
-
-
         return redirect('/login')->with('success', 'Registration successfull please login');
     }
 }
