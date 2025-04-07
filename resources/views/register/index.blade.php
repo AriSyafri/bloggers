@@ -55,8 +55,11 @@
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
                                 file:bg-violet-50 file:text-violet-700
-                                hover:file:bg-violet-100
+                                hover:file:bg-violet-100 @error('image') border-pink-500 text-pink-600 @enderror
                                 "/>
+                                @error('image')
+                                    <p class="text-pink-600">{{ $message }}</p>
+                                @enderror
                             </label>
 
                         </div>

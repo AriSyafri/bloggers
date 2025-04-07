@@ -285,12 +285,20 @@
           data-dropdown-toggle="dropdown"
         >
           <span class="sr-only">Open user menu</span>
-          <img
-            class="w-8 h-8 rounded-full"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
-            alt="user photo"
-          />
-        </button>
+          @if (auth()->check())
+                <img
+                    class="w-8 h-8 rounded-full"
+                    src="{{ auth()->user()->image ? asset('storage/' . auth()->user()->image) : '/img/icon-user.jpg' }}"
+                    alt="login photo"
+                />
+            @else
+                <img
+                    class="w-8 h-8 rounded-full"
+                    src="/img/icon-user.jpg"
+                    alt="user photo"
+                />
+            @endif
+                </button>
         <!-- Dropdown menu -->
         <div
           class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
