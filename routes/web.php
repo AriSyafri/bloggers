@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardPostController;
 
 Route::get('/', function () {
@@ -81,3 +82,6 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 // Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 Route::get('/dashboard/categories/checkSlugCategory', [AdminCategoryController::class, 'checkSlugCategory'])->middleware('admin');
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
+
+
+Route::resource('/dashboard/users', AdminUserController::class)->except('show')->middleware('admin');
