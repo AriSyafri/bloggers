@@ -15,7 +15,7 @@ class AdminUserController extends Controller
     {
         return view('dashboard.users.index', [
             'title' => 'Users',
-            'users' => User::all()
+            'users' => User::query()->paginate(5)
         ]);
     }
 

@@ -113,7 +113,10 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-4 py-3">#</th>
+                            <th scope="col" class="px-4 py-3">Username</th>
                             <th scope="col" class="px-4 py-3">Name</th>
+                            <th scope="col" class="px-4 py-3">Email</th>
+                            <th scope="col" class="px-4 py-3">Is Admin</th>
                             <th scope="col" class="px-4 py-3 text-center">Actions</th>
                         </tr>
                     </thead>
@@ -121,7 +124,10 @@
                         @foreach($users as $user)
                             <tr class="border-b dark:border-gray-700">
                                 <td class="px-4 py-3">{{ $loop->iteration }}</td>
-                                <td class="px-4 py-3">{{ $user->name }}</td>
+                                <td class="px-4 py-3">{{ $user->username }}</td>
+                                <td class="px- 4 py-3">{{ $user->name }}</td>
+                                <td class="px- 4 py-3">{{ $user->email }}</td>
+                                <td class="px- 4 py-3">{{ $user->is_admin }}</td>
                                 <td class="px-4 py-3 text-center">
 
                                     <a href="/dashboard/users/{{ $user->username }}/edit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">Edit</a>
@@ -167,7 +173,7 @@
 
         </div>
         <nav class="space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
-            {{-- {{ $users->links() }} --}}
+            {{ $users->links() }}
         </nav>
     </div>
 
