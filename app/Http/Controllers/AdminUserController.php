@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class AdminUserController extends Controller
@@ -24,7 +24,9 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.users.create', [
+            'title' => 'Create User'
+        ]);
     }
 
     /**
@@ -32,7 +34,29 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'username' => ['required', 'min:3', 'max:255', 'unique:users'],
+            'email' => 'required|email:dns|unique:users',
+            'password' => 'required|min:5|max:255',
+            'is_admin' => 'required|boolean',
+            'image' => 'image|file|max:1024'
+        ]);
+
+        if($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('profile-images');
+        }
+
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+
+        User::create($validatedData);
+
+        // $request->session()->flash('success', 'Registration successfull please login');
+        return redirect('/dashboard/users')->with('success', 'Create user successfull');
     }
 
     /**
