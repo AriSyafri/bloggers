@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -39,6 +41,7 @@ class AdminUserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'username' => ['required', 'min:3', 'max:255', 'unique:users'],
+            'slug' => 'required|unique:users',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:5|max:255',
             'is_admin' => 'required|boolean',
@@ -70,9 +73,12 @@ class AdminUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('dashboard.users.edit', [
+            'title' => 'Edit',
+            'user' => $user
+        ]);
     }
 
     /**
@@ -89,5 +95,10 @@ class AdminUserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function checkSlugUser(Request $request){
+        $slug = SlugService::createSlug(User::class, 'slug', $request->username);
+        return response()->json(['slug' => $slug]);
     }
 }

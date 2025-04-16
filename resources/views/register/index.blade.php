@@ -16,22 +16,29 @@
 
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500  @error('name') border-pink-500 text-pink-600 @enderror" placeholder="name" required="" value={{ old('name') }}>
+                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500  @error('name') border-pink-500 text-pink-600 @enderror" placeholder="name" required="" value="{{ old('name') }}">
                             @error('name')
                                 <p class="text-pink-600">{{ $message }}</p>
                             @enderror
                         </div>
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                            <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('username') border-pink-500 text-pink-600 @enderror" placeholder="username"  required="" value={{ old('username') }}>
+                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                            <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('username') border-pink-500 text-pink-600 @enderror" placeholder="username"  required="" value="{{ old('username') }}"">
                             @error('username')
+                                <p class="text-pink-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <label for="slug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">slug</label>
+                            <input type="text" name="slug" id="slug" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('slug') border-pink-500 text-pink-600 @enderror" placeholder="slug"  required="" value="{{ old('slug') }}">
+                            @error('slug')
                                 <p class="text-pink-600">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('email') border-pink-500 text-pink-600 @enderror" placeholder="name@company.com" required="" value={{ old('email') }}>
+                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('email') border-pink-500 text-pink-600 @enderror" placeholder="name@company.com" required="" value="{{ old('email') }}">
                             @error('email')
                                 <p class="text-pink-600">{{ $message }}</p>
                             @enderror
@@ -73,4 +80,20 @@
                 </div>
             </div>
         </div>
+
+
+        <script>
+
+            const username = document.querySelector('#username');
+            const slug = document.querySelector('#slug');
+
+            username.addEventListener('change', function() {
+                fetch('/register/checkSlugUser?username=' + username.value)
+                .then(response => response.json())
+                .then(data => slug.value = data.slug)
+            });
+
+        </script>
+
+
 </x-layout>

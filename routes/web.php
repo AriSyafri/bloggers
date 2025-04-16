@@ -63,6 +63,7 @@ Route::post('/login', [LoginController::class, 'authenticate'])->middleware('gue
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register/checkSlugUser', [RegisterController::class, 'checkSlugUser']);
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
@@ -83,5 +84,5 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 Route::get('/dashboard/categories/checkSlugCategory', [AdminCategoryController::class, 'checkSlugCategory'])->middleware('admin');
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
-
+Route::get('/dashboard/users/checkSlugUser', [AdminUserController::class, 'checkSlugUser']);
 Route::resource('/dashboard/users', AdminUserController::class)->except('show')->middleware('admin');

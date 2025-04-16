@@ -25,6 +25,13 @@
             </div>
 
             <div class="mb-3">
+                <label for="slug" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">slug</label>
+                <input type="text" id="slug" name="slug"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="your slug" required value="{{ old('slug') }}">
+            </div>
+
+            <div class="mb-3">
                 <label for="email" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">email</label>
                 <input type="email" id="email" name="email"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -74,6 +81,18 @@
     </div>
 </div>
 
+<script>
+
+    const username = document.querySelector('#username');
+    const slug = document.querySelector('#slug');
+
+    username.addEventListener('change', function() {
+        fetch('/dashboard/users/checkSlugUser?username=' + username.value)
+        .then(response => response.json())
+        .then(data => slug.value = data.slug)
+    });
+
+</script>
 
 
 @endsection
