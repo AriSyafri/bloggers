@@ -84,9 +84,32 @@ class AdminUserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            'name' => 'required|max:255',
+            'password' => 'required|min:5|max:255',
+            'is_admin' => 'required|boolean',
+            'image' => 'image|file|max:1024'
+        ];
+
+        if($request->slug != $user->slug) {
+            $rules['slug'] = 'required|unique:users';
+        }
+
+        if($request->email != $user->email) {
+            $rules['email'] = 'required|unique:users';
+        }
+
+        if($request->username != $user->username) {
+            $rules['username'] = 'required|unique:users';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        User::where('id', $user->id)
+            ->update($validatedData);
+        return redirect('/dashboard/users')->with('success', 'User has been updated');
     }
 
     /**
