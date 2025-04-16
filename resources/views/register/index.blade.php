@@ -53,7 +53,7 @@
 
                         <div class="flex items-center space-x-6">
                             <div class="shrink-0">
-                                <img class="h-16 w-16 object-cover rounded-full" src="/img/icon-user.jpg" alt="Current profile photo" />
+                                <img class="img-preview h-16 w-16 object-cover rounded-full" src="/img/icon-user.jpg" alt="Current profile photo" />
                             </div>
                             <label class="block">
                                 <span>Choose profile photo</span>
@@ -63,7 +63,7 @@
                                 file:text-sm file:font-semibold
                                 file:bg-violet-50 file:text-violet-700
                                 hover:file:bg-violet-100 @error('image') border-pink-500 text-pink-600 @enderror
-                                "/>
+                                " onchange="previewImage()"/>
                                 @error('image')
                                     <p class="text-pink-600">{{ $message }}</p>
                                 @enderror
@@ -92,6 +92,20 @@
                 .then(response => response.json())
                 .then(data => slug.value = data.slug)
             });
+
+            // preview image
+            function previewImage() {
+                const image = document.querySelector('#image');
+                const imgPreview = document.querySelector('.img-preview');
+
+                imgPreview.style.display = 'block';
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
+
+                oFReader.onload = function(oFRevent) {
+                    imgPreview.src = oFRevent.target.result; // perbaikan disini
+                }
+            }
 
         </script>
 
