@@ -89,9 +89,9 @@ class AdminUserController extends Controller
         $rules = [
             'name' => 'required|max:255',
             'password' => 'required|min:5|max:255',
-            'is_admin' => 'required|boolean',
-            'image' => 'image|file|max:1024'
+            'is_admin' => 'required|boolean'
         ];
+
 
         if($request->slug != $user->slug) {
             $rules['slug'] = 'required|unique:users';
@@ -106,6 +106,10 @@ class AdminUserController extends Controller
         }
 
         $validatedData = $request->validate($rules);
+
+        if($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('profile-images');
+        }
 
         User::where('id', $user->id)
             ->update($validatedData);
