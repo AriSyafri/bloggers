@@ -76,10 +76,10 @@ class AdminCategoryController extends Controller
     public function edit(Category $category)
     {
 
-        // return view('dashboard.categories.edit', [
-        //     'title' => 'Edit',
-        //     'category' => $category
-        // ]);
+        return view('dashboard.categories.edit', [
+            'title' => 'Edit',
+            'category' => $category
+        ]);
     }
 
     /**
