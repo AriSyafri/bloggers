@@ -4,12 +4,6 @@
 
     @auth
         <h3 class="text-xl">Jumpa Lagi {{ auth()->user()->name }}</h3>
-        <h3 class="text-xl">http://bloggers.test/storage/{{ auth()->user()->image }}</h3>
-        <img
-        class="size-8 rounded-full"
-        src="{{ asset('storage/' . auth()->user()->image) }}"
-        alt="tes photo"
-        />
     @endauth
 
     @guest
