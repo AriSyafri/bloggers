@@ -111,6 +111,9 @@ class AdminUserController extends Controller
             $validatedData['image'] = $request->file('image')->store('profile-images');
         }
 
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+
         User::where('id', $user->id)
             ->update($validatedData);
         return redirect('/dashboard/users')->with('success', 'User has been updated');
