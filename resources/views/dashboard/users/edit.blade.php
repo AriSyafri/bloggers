@@ -48,6 +48,8 @@
 
             <div class="flex items-center space-x-6">
 
+                <input type="hidden" name="oldImage" value="{{ $user->image }}">
+
                 <div class="shrink-0">
 
                     @if ($user->image)
