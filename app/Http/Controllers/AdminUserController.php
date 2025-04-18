@@ -126,9 +126,13 @@ class AdminUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        if($user->image) {
+            Storage::delete($user->image);
+        }
+        User::destroy($user->id);
+        return redirect('/dashboard/users')->with('success', 'User has been delete');
     }
 
     public function checkSlugUser(Request $request){
