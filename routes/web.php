@@ -12,6 +12,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardPostController;
+use Illuminate\Support\Facades\Auth;
+
 
 Route::get('/', function () {
     return view('home', [
@@ -23,10 +25,24 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
+    if (!Auth::check()) {
+        return redirect('/login');
+    }
+
+    $query = Post::where('author_id', Auth::user()->id);
+
+    if(request('search')) {
+        $query->where('title', 'like', '%' . request('search') . '%');
+    }
+
+    $posts = $query->paginate(6);
+
     return view('about', [
         'name' => 'Ari Syafri',
-        'title' => 'About'
+        'title' => 'About',
+        'posts' => $posts
     ]);
+
 });
 
 Route::get('/posts', function () {
@@ -79,4 +95,4 @@ Route::get('/dashboard/categories/checkSlugCategory', [AdminCategoryController::
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
 Route::get('/dashboard/users/checkSlugUser', [AdminUserController::class, 'checkSlugUser']);
-Route::resource('/dashboard/users', AdminUserController::class)->except('show')->middleware('admin');
+Route::resource('/dashboard/users', AdminUserController::class)->except('show')->middleware('auth');
