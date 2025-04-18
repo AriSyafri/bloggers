@@ -8,6 +8,7 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class AdminUserController extends Controller
 {
@@ -128,11 +129,27 @@ class AdminUserController extends Controller
      */
     public function destroy(User $user)
     {
-        if($user->image) {
-            Storage::delete($user->image);
-        }
-        User::destroy($user->id);
-        return redirect('/dashboard/users')->with('success', 'User has been delete');
+        // if($user->image) {
+        //     Storage::delete($user->image);
+        // }
+        // User::destroy($user->id);
+        // return redirect('/dashboard/users')->with('success', 'User has been delete');
+
+        DB::transaction(function () use ($user) {
+            // Hapus gambar jika ada
+            if ($user->image) {
+                Storage::delete($user->image);
+            }
+
+            // Hapus semua post milik user
+            $user->posts()->delete();
+
+            // Hapus user
+            $user->delete();
+        });
+
+        return redirect('/dashboard/users')->with('success', 'User has been deleted');
+
     }
 
     public function checkSlugUser(Request $request){
