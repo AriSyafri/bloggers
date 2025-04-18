@@ -17,9 +17,17 @@ class AdminUserController extends Controller
      */
     public function index()
     {
+        $query = User::query();
+
+        if (request('search')) {
+            $query->where('name', 'like', '%' . request('search') . '%');
+        }
+
+        $users = $query->paginate(5);
+
         return view('dashboard.users.index', [
             'title' => 'Users',
-            'users' => User::query()->paginate(5)
+            'users' => $users
         ]);
     }
 

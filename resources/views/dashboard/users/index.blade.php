@@ -68,7 +68,7 @@
                 <form action="/dashboard/users" method="GET">
                     <div class="items-center mx-auto mb-2 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
                         <div class="relative w-full">
-                            <label for="email"
+                            <label for="search"
                                 class="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Search</label>
                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
