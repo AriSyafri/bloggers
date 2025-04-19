@@ -30,11 +30,6 @@ Route::get('/about', function () {
     }
 
     $query = Post::where('author_id', Auth::user()->id);
-
-    if(request('search')) {
-        $query->where('title', 'like', '%' . request('search') . '%');
-    }
-
     $posts = $query->paginate(6);
 
     return view('about', [
