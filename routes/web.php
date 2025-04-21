@@ -43,7 +43,7 @@ Route::get('/about', function () {
 Route::get('/posts', function () {
     return view('posts', [
         'title' => 'Posts',
-        'posts' => Post::filter(request(['search', 'category', 'author']))->latest()->paginate(10)->withQueryString()
+        'posts' => Post::filter(request(['search', 'category', 'author']))->latest()->paginate(9)->withQueryString()
     ]);
 });
 
