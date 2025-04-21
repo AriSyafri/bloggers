@@ -61,6 +61,11 @@
                         <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {{ $post['title'] }}</h2>
                     </a>
+
+                    <img
+                        class="h-40 mx-auto mb-5" src="/img/thumb-post.png" alt="thumbnail"
+                    />
+
                     <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
                         {{ Str::limit($post->excerpt, 150) }}</p>
                     <div class="flex justify-between items-center">
@@ -91,6 +96,7 @@
                         </a>
                     </div>
                 </article>
+
 
             @empty
                 <div>
