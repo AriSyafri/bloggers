@@ -31,7 +31,7 @@ class DashboardPostController extends Controller
             $query->where('title', 'like', '%' . request('search') . '%');
         }
 
-        $posts = $query->paginate(10);
+        $posts = $query->latest()->paginate(10);
 
         return view('dashboard.posts.index', [
             'title' => 'Posts',
@@ -60,11 +60,16 @@ class DashboardPostController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
             'category_id' => 'required',
+            'image' => 'image|file|max:1024',
             'body' => 'required'
         ]);
 
         $validatedData['author_id'] = Auth::user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+
+        if($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
 
         Post::create($validatedData);
 

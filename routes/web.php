@@ -30,7 +30,7 @@ Route::get('/about', function () {
     }
 
     $query = Post::where('author_id', Auth::user()->id);
-    $posts = $query->paginate(6);
+    $posts = $query->latest()->paginate(6);
 
     return view('about', [
         'name' => 'Ari Syafri',

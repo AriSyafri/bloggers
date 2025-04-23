@@ -34,6 +34,15 @@
 
                 <h1 class="mt-4 mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{{ $post->title }}</h1>
             </header>
+
+            @if ($post->image != null)
+                <img
+                    class=""
+                    src="{{ $post->image ? asset('storage/' . $post->image) : '/img/thumb-post.png' }}"
+                    alt="login photo"
+                />
+            @endif
+
             {!! $post->body !!}
 
         </article>

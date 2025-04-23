@@ -4,7 +4,7 @@
 <div class="min-h-screen w-full flex flex-col justify-start items-start bg-gray-100 dark:bg-gray-900 px-4">
     <div class="w-full max-w-5xl mx-auto py-2 px-6 md:px-12">
         <h2 class="mb-2 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">Create New Post</h2>
-        <form method="post" action="/dashboard/posts" class="w-full">
+        <form method="post" action="/dashboard/posts" class="w-full" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -37,6 +37,26 @@
                 </select>
             </div>
 
+            <div class="flex items-center space-x-6 mb-4">
+                <div class="shrink-0">
+                    <img class="img-preview h-60 object-cover" src="/img/thumb-post.png" alt="Post image" />
+                </div>
+                <label class="block">
+                    <span>Choose Image Post</span>
+                    <input type="file" id="image" name="image" class="block w-full text-sm text-slate-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-violet-50 file:text-violet-700
+                    hover:file:bg-violet-100 @error('image') border-pink-500 text-pink-600 @enderror
+                    " onchange="previewImage()"/>
+                    @error('image')
+                        <p class="text-pink-600">{{ $message }}</p>
+                    @enderror
+                </label>
+
+            </div>
+
             <div class="mb-3">
                 <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">Insert Body</label>
                 @error('body')
@@ -67,6 +87,25 @@
     document.addEventListener('trix-file-accept', function(e) {
         e.preventDefault();
     })
+
+    // preview image
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFRevent) {
+            imgPreview.src = oFRevent.target.result;
+        }
+
+
+    }
+
+
 </script>
 
 @endsection

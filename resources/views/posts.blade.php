@@ -63,7 +63,9 @@
                     </a>
 
                     <img
-                        class="h-40 mx-auto mb-5" src="/img/thumb-post.png" alt="thumbnail"
+                        class="h-40 mx-auto mb-5"
+                        src="{{ $post->image ? asset('storage/' . $post->image) : '/img/thumb-post.png' }}"
+                        alt="thumb img"
                     />
 
                     <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
