@@ -35,7 +35,20 @@ karena menggunakan sql lite dapat mencoba lanjut dengna migrate
 
 lakukan migrate database dengan php artisan 
 ```
-    php artisan migrate 
+php artisan migrate 
+```
+
+lakukan install package json  
+```
+npm instal package.json 
+```
+
+
+lakukankey generate dan bersihkan cache  
+```
+
+php artisan key:generate
+php artisan config:cache
 ```
 
 jalankan php artisan serve
