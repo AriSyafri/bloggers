@@ -26,7 +26,10 @@ install denpendencies dengna composer install
     composer install 
 ```
 
+```
 Copy file .env.example cp .env.example .env
+
+```
 
 karena menggunakan sql lite dapat mencoba lanjut dengna migrate
 
