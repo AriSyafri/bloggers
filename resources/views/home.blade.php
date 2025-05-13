@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-slot:title>Selamat Datang kucrut</x-slot:title>
+    <x-slot:title>Selamat Datang kucrut 1</x-slot:title>
 
     @auth
         <h3 class="text-xl">Jumpa Lagi {{ auth()->user()->name }}</h3>
